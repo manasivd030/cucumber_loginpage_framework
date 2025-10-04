@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate Allure Report in root directory
         if: always()
-        run: mvn -B allure:report -Dallure.report.directory=allure-report
+        run: allure serve allure-results
 
       - name: Publish Allure Report to GitHub Pages
         if: always()
