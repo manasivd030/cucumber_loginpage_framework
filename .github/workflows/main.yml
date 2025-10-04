@@ -18,12 +18,12 @@ jobs:
           distribution: temurin
           java-version: '23'
 
-      # Ensure Chrome exists so Selenium Manager picks a matching driver
+      # Install Chrome for Selenium
       - uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
 
-      - name: Run tests (headless, no shared profile)
+      - name: Run tests
         env:
           CI: "true"
           HEADLESS: "true"
@@ -32,14 +32,14 @@ jobs:
           XDG_RUNTIME_DIR: ""
         run: mvn -B clean test
 
-      - name: Generate Allure Report
+      - name: Generate Allure Report in root directory
         if: always()
-        run: mvn -B allure:report
+        run: mvn -B allure:report -Dallure.report.directory=allure-report
 
-      - name: Publish Allure to GitHub Pages
+      - name: Publish Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-maven-plugin
+          publish_dir: allure-report

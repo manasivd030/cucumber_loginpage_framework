@@ -114,7 +114,7 @@
             <artifactId>allure-maven</artifactId>
             <version>2.12.0</version> <!-- Use the latest stable version -->
             <configuration>
-                <reportVersion>2.12.0</reportVersion> <!-- Use the same version as the plugin -->
+                <reportDirectory>./allure-report</reportDirectory>
             </configuration>
         </plugin>
     </plugins>

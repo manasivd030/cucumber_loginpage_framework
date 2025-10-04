@@ -3,53 +3,44 @@ package hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.qameta.allure.Attachment;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import config.Config;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
-import java.util.UUID;
 
 public class TestHooks {
     public static WebDriver driver;
 
     @Before
     public void setUp() throws Exception {
-        WebDriverManager.chromedriver().setup();
-
-        // Create a unique, throwaway Chrome profile per session
+        // IMPORTANT: Do NOT call WebDriverManager here. Let Selenium Manager handle it.
         Path userDataDir = Files.createTempDirectory("chrome-user-data-");
-        String profileDir = "Profile-" + UUID.randomUUID();
 
         ChromeOptions opts = new ChromeOptions();
-
-        // Always include the stable CI flags (even if not headless)
         opts.addArguments(
+                // Always run headless on CI
+                "--headless=new",
+                // CI/Linux stability flags
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
                 "--disable-gpu",
                 "--disable-extensions",
-                "--window-size=1440,900"
+                "--no-first-run",
+                "--no-default-browser-check",
+                "--password-store=basic",
+                "--use-mock-keychain",
+                "--window-size=1440,900",
+                // Unique, throwaway profile per session
+                "--user-data-dir=" + userDataDir.toAbsolutePath()
         );
+        // NOTE: deliberately NOT setting --profile-directory
 
-        if (Config.headless()) {
-            // Use modern headless
-            opts.addArguments("--headless=new");
-        }
-
-        // Unique profile prevents "user data directory is already in use"
-        opts.addArguments("--user-data-dir=" + userDataDir.toAbsolutePath());
-        opts.addArguments("--profile-directory=" + profileDir);
-
-        // Optional: helps on some runners / versions
-        // opts.addArguments("--remote-allow-origins=*");
+        // Optional: debug driver startup if needed
+        System.setProperty("webdriver.chrome.logfile", "chromedriver.log");
+        System.setProperty("webdriver.chrome.verboseLogging", "true");
 
         driver = new ChromeDriver(opts);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
@@ -58,12 +49,10 @@ public class TestHooks {
 
     @After
     public void tearDown(io.cucumber.java.Scenario scenario) {
-        if (scenario.isFailed() && driver instanceof TakesScreenshot) {
-            attachPng(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+        if (scenario.isFailed() && driver instanceof TakesScreenshot ts) {
+            attachPng(ts.getScreenshotAs(OutputType.BYTES));
         }
-        if (driver != null) {
-            driver.quit(); // releases the profile lock
-        }
+        if (driver != null) driver.quit();
     }
 
     @Attachment(value = "Failure screenshot", type = "image/png")
