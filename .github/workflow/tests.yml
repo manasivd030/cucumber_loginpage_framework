@@ -1,33 +1,35 @@
-name: Workflow for Login Herokuapp Webpage
+name: Maven Tests with Allure
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout (full history for Allure history)
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Set up Temurin JDK 23
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '23'
-          cache: maven
 
-      - name: Build & Test (produces target/allure-results)
-        run: mvn -B clean test
+      - name: Run Tests
+        run: mvn clean test
 
-      - name: Upload raw Allure results (as artifact)
-        uses: actions/upload-artifact@v4
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Publish Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: allure-results
-          path: allure-results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: target/site/allure-maven-plugin
