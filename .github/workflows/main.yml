@@ -34,7 +34,8 @@ jobs:
 
       - name: Generate Allure Report in root directory
         if: always()
-        run: allure serve allure-results
+        run: |
+          allure generate allure-results --clean -o allure-report
 
       - name: Publish Allure Report to GitHub Pages
         if: always()
