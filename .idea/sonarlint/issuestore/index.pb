@@ -43,3 +43,9 @@ J
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+J
+.github/workflows/main.yml,c\7\c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0
+Å
+Q.idea/sonarlint/securityhotspotstore/c/7/c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0,d\4\d4a7b72d416ad3c58ce45939caa451687c0488cc
+w
+G.idea/sonarlint/issuestore/c/7/c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0,f\c\fceead1c1b5a04f36483971db14c7aaa3fb6a84a
