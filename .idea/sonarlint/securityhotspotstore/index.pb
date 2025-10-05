@@ -1,29 +1,11 @@
 
-S
-#src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-P
- src/main/java/config/Config.java,a\5\a5b337c4b686c54c17dbaefff347361cc87537fd
-R
-"src/main/java/pages/LoginPage.java,4\b\4bdc7fe650a4170fd3332cdfc4dca51f7507f98b
-U
-%src/main/java/runner/RunCukeTest.java,a\7\a753c88b6aba3f6c9c5e47ab8d0c507449d2864f
-S
-#src/main/java/steps/LoginSteps.java,b\d\bdb324d6453eb54b18cb4017271b6884cca762dc
-R
-"src/main/java/hooks/TestHooks.java,9\0\904ef642949c8b34d7fac28bdac156f2020b31db
 :
 
 testng.xml,5\2\522a7a4e21649af06297e31a9e33f13bb4fd3022
 U
 %src/test/java/runner/RunCukeTest.java,b\5\b5d53bad5063330923fee7722389f133618d5e97
-F
-src/test/java/resource,c\f\cf5231a1d9ead7e78064afdb5c13634b5bf9b491
-]
--src/test/java/resources/feature/login.feature,e\2\e21d2509f27b798c159e2a835d586f1a25568534
-Y
-)src/test/java/resources/config.properties,d\4\d45e172f934a02016617b44ad8a207d1d3ebe70c
 T
 $src/test/resources/config.properties,0\f\0f13ca54fbf51d3451e2d260e112687a3cb1c861
 R
@@ -32,14 +14,8 @@ P
  src/test/java/config/Config.java,3\5\358718b522862b22cb09d21ebf673602d270fa12
 R
 "src/test/java/hooks/TestHooks.java,a\a\aac514d22eec1d5ad68833e1a2177f0827cee3e0
-V
-&src/test/resources/cucumber.properties,4\5\45b499848fb69b5bcf53def3d994a85f2b47def3
-r
-Ballure-results/0f878569-33b8-4ee9-adce-566b2ce19c6b-container.json,5\f\5f1a613e7b8ea4bcb1a7421095d78b8c04453f78
 P
  cucumber_loginpage_framework.iml,1\f\1f2a8ae377b0a42e3a483d52bb0f9d980c365e37
-J
-.github/workflow/tests.yml,e\1\e129944be7dd54738f9ae66d7ff7dc2010bedeb7
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

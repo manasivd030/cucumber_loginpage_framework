@@ -1,9 +1,0 @@
-
-š
-java:S1104"RMake driver a static final constant or non-public and provide accessors if needed.(ÜçÁÈûÿÿÿÿ8º¯Áûš3J$8c00976d-4394-4642-964e-68a70e0a432f
-t
-java:S1444",Make this "public static driver" field final(ÜçÁÈûÿÿÿÿ8ïÄşüš3J$169be4ba-4d47-45d3-b4aa-41c670bb4ca8
-~
-java:S2696"6Make the enclosing method "static" or remove this set.(¤£«Şûÿÿÿÿ8†Åşüš3J$ee29900b-9f83-46fa-84b1-8055b9c2fdf4
- 
-java:S6201#"XReplace this instanceof check and cast with 'instanceof TakesScreenshot takesscreenshot'(Ë¢Ò‰ıÿÿÿÿ8¨ú…ıš3J$970f8e1d-f907-4e5a-9767-865a72c4a63e
