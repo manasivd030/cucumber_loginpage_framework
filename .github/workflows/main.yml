@@ -59,7 +59,7 @@ jobs:
         with:
           server: mail.smtp2go.com
           port: 587
-          secure: true
+          secure: false
           username: ${{ secrets.SMTP2GO_QA_TEST }}
           password: ${{ secrets.SMTP2GO_RELEASE_PASSWORD }}
           subject: "Allure Report • cucumber_loginpage_framework • Run #${{ github.run_number }} (${{ job.status }})"
