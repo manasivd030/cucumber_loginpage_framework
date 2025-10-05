@@ -10,6 +10,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -51,3 +52,23 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
+
+      - name: Email Allure Report Link
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server: mail.smtp2go.com
+          port: 587
+          secure: true
+          username: ${{ secrets.SMTP2GO_QA_TEST }}
+          password: ${{ secrets.SMTP2GO_RELEASE_PASSWORD }}
+          subject: "Allure Report • cucumber_loginpage_framework • Run #${{ github.run_number }} (${{ job.status }})"
+          from: "CI Bot <ci@yourdomain.com>"
+          to: "cmpnproj2016@gmail.com"
+          html_body: |
+            <h3>✅ Maven Tests with Allure</h3>
+            <p><b>Repository:</b> ${{ github.repository }}</p>
+            <p><b>Run Number:</b> ${{ github.run_number }}</p>
+            <p><b>Status:</b> ${{ job.status }}</p>
+            <p>📊 <a href="https://manasivd030.github.io/cucumber_loginpage_framework/" target="_blank">Click here to view the Allure Report</a></p>
+            <p>Triggered by: ${{ github.actor }}</p>
