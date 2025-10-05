@@ -72,7 +72,7 @@ jobs:
           username: ${{ secrets.SMTP2GO_QA_TEST }}
           password: ${{ secrets.SMTP2GO_RELEASE_PASSWORD }}
           subject: "Allure Report • cucumber_loginpage_framework • Run #${{ github.run_number }} (${{ job.status }})"
-          from: "CI Bot <ci@yourdomain.com>"
+          from: "QA Release Manager <manasivd030@gmail.com>"
           to: "cmpnproj2016@gmail.com"
           html_body: |
             <h3>✅ Maven Tests with Allure</h3>
